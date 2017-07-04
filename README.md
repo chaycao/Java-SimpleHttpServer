@@ -7,3 +7,4 @@
 
 
 - SingleFileHTTPServer：简单的单文件服务器
+- Redirector：重定向服务器
