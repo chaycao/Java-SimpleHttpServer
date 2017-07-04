@@ -12,9 +12,9 @@ import java.net.*;
  */
 public class SingleFileHTTPServer extends Thread {
 
-    private byte[] content;
-    private byte[] header;
-    private int port = 80;
+    private byte[] content;     //保存的文件内容
+    private byte[] header;      //response的消息头
+    private int port = 80;      //默认端口80
 
     private SingleFileHTTPServer(String data, String encoding,
                                  String MiMEType, int port) throws UnsupportedEncodingException {
@@ -32,6 +32,10 @@ public class SingleFileHTTPServer extends Thread {
         this.header = header.getBytes("ASCII");
     }
 
+    /**
+     * 1.打开Server，绑定端口
+     * 2.死循环，接收请求，返回已经保存好的文件内容
+     */
     public void run(){
         try {
             // 1.打开server，绑定到固定端口
@@ -66,12 +70,12 @@ public class SingleFileHTTPServer extends Thread {
             }
 
         } catch (IOException e) {
-            System.out.println("Could not start server. Port Occup");
+            System.out.println("Could not start server. Port Occupied");
         }
     }
 
     /**
-     *
+     *  对SingleFileHTTPServer初始化，启动服务实例
      * @param args：文件名；端口；编码
      */
     public static void main(String[] args) {
